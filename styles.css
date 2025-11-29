@@ -1,0 +1,162 @@
+/* ------------------------------------- */
+/* ESTILOS BASE */
+/* ------------------------------------- */
+body {
+    margin: 0;
+    overflow: hidden; 
+    background-color: #0a0a0a; /* Fondo muy oscuro, casi negro */
+    font-family: 'VT323', monospace; 
+    color: #ff0000; /* Color principal rojo intenso */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* ------------------------------------- */
+/* EFECTOS DE FONDO INQUIETANTES */
+/* ------------------------------------- */
+
+/* 1. Efecto de fondo pixeleado de cámaras de seguridad */
+.background-surveillance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* URL de una imagen oscura para simular el feed de la cámara */
+    background-image: url('https://via.placeholder.com/1280x720/000000/333333?text=SURVEILLANCE+FEED');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* Muy sutil */
+    /* Filtros para simular baja calidad, desaturación y contraste */
+    filter: grayscale(100%) brightness(50%) contrast(150%) blur(1px) saturate(0%);
+    animation: scanline 8s infinite linear, pixelate 0.5s infinite alternate; 
+}
+
+/* 2. Cuadrícula de efecto de pantalla */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, transparent 95%, rgba(0,255,0,0.1) 95%),
+                      linear-gradient(90deg, transparent 95%, rgba(0,255,0,0.1) 95%);
+    background-size: 10px 10px; 
+    opacity: 0.05; 
+    pointer-events: none; 
+}
+
+/* 3. Efecto de rayas de interferencia (RGB Sutil) */
+.interference-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.1;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,0,0,0.05) 0px,
+        rgba(0,255,0,0.05) 1px,
+        rgba(0,0,255,0.05) 2px,
+        transparent 3px,
+        transparent 5px
+    );
+    animation: line-shift 3s infinite linear;
+}
+
+/* 4. Efecto de ruido estático (granulado) */
+.noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.imgur.com/b9hQ25V.png');
+    background-size: 100px;
+    opacity: 0.05;
+    pointer-events: none;
+    animation: noise-anim 0.2s infinite alternate;
+    z-index: 20;
+}
+
+
+/* ------------------------------------- */
+/* CONTENEDOR Y TEXTO PRINCIPAL */
+/* ------------------------------------- */
+.content-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 40px 60px;
+    border: 2px solid #ff0000; /* Borde rojo */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), inset 0 0 10px rgba(255, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.6); 
+    animation: glitch 1.5s infinite alternate; 
+}
+
+h1 {
+    font-size: 4.5em; 
+    margin: 0;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9); 
+    letter-spacing: 3px; 
+    color: #ff0000;
+}
+
+p {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #ff5555; 
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    animation: flicker-text 2s infinite alternate; 
+}
+
+
+/* ------------------------------------- */
+/* ANIMACIONES CSS */
+/* ------------------------------------- */
+
+/* Simula línea de escaneo vertical en el fondo */
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; } 
+}
+
+/* Simula ligero cambio en la pixelación del fondo */
+@keyframes pixelate {
+    0% { filter: grayscale(100%) brightness(50%) contrast(150%) blur(1px) saturate(0%); }
+    100% { filter: grayscale(100%) brightness(48%) contrast(152%) blur(1.5px) saturate(0%); }
+}
+
+/* Efecto de falla o interferencia principal */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Parpadeo sutil en el texto */
+@keyframes flicker-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+}
+
+/* Desplazamiento de las líneas de interferencia */
+@keyframes line-shift {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
+
+/* Movimiento de ruido estático */
+@keyframes noise-anim {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
